@@ -46,16 +46,19 @@ function App() {
       setCurrentDisplay((eval(prevDisplay + currentOperator + currentDisplay)).toString())
       setPrevDisplay("")
       setCurrentOperator("")
-  
-    }
-   
-    
-    
+    } 
   }
+
+  function deleteValue(){
+    if (currentDisplay == "") return
+    setCurrentDisplay(currentDisplay.slice(0,-1))
+  }
+
+
   return (
     <>
       <div className="container">
-          <Calculator equals={equals} currentOperator={currentOperator} allClear={allClear} currentDisplay={currentDisplay} prevDisplay={prevDisplay} displayNumberHandler={displayNumberHandler} handleOperator={handleOperator}/> 
+          <Calculator deleteValue={deleteValue} equals={equals} currentOperator={currentOperator} allClear={allClear} currentDisplay={currentDisplay} prevDisplay={prevDisplay} displayNumberHandler={displayNumberHandler} handleOperator={handleOperator}/> 
       </div>
     
     

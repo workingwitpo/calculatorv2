@@ -1,4 +1,4 @@
-const Calculator = ({equals, currentOperator, currentDisplay, prevDisplay, displayNumberHandler, handleOperator, allClear}) => {
+const Calculator = ({deleteValue, equals, currentOperator, currentDisplay, prevDisplay, displayNumberHandler, handleOperator, allClear}) => {
 
 
 
@@ -10,7 +10,7 @@ const Calculator = ({equals, currentOperator, currentDisplay, prevDisplay, displ
             </div>
             <div className="buttons-group">
                 <button onClick={allClear} className="all-clear spantwo">AC</button>
-                <button className="delete">DEL</button>
+                <button onClick={deleteValue}className="delete">DEL</button>
                 <button onClick={handleOperator} className="operator" value={"/"}>÷</button>
                 <button onClick={displayNumberHandler} value={1} className="number 1">1</button>  
                 <button onClick={displayNumberHandler} value={2} className="number 2">2</button>
