@@ -1,24 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import Calculator from "./Calculator";
+import './index.css'
+import { useState, useEffect} from 'react'
+import userEvent from "@testing-library/user-event";
+
 
 function App() {
+
+  const [currentDisplay, setCurrentDisplay] = useState("")
+  const [prevDisplay, setPrevDisplay] = useState("")
+  const [currentOperator, setCurrentOperator] = useState("")
+
+  function displayNumberHandler(number) {
+    if (number.target.value === "." && currentDisplay.includes(".")) return
+    setCurrentDisplay(currentDisplay + number.target.value)
+  }
+
+  function handleOperator(operator) {
+    if (currentDisplay.length === 1 && currentDisplay === ".") return
+    if(currentDisplay === "" && prevDisplay === "") return
+    if (currentDisplay != "" && prevDisplay == ""){
+      setCurrentOperator(operator.target.value)
+      setPrevDisplay((parseFloat(currentDisplay) + currentOperator))
+      setCurrentDisplay("")
+    }
+    if(currentDisplay === "" && prevDisplay != ""){
+      setCurrentOperator(operator.target.value)
+    }
+    if(currentDisplay != "" && prevDisplay != ""){
+      setPrevDisplay(eval(prevDisplay + currentOperator + parseFloat(currentDisplay)))
+      setCurrentOperator(operator.target.value)
+      setCurrentDisplay("")
+    }
+  }
+
+  function allClear(){
+    setCurrentDisplay("")
+    setPrevDisplay("")
+    setCurrentOperator("")
+    
+  }
+
+  function equals(){
+    if (currentDisplay.length === 1 && currentDisplay === ".") return
+    if (currentDisplay != "" && prevDisplay != ""){
+      setCurrentDisplay((eval(prevDisplay + currentOperator + currentDisplay)).toString())
+      setPrevDisplay("")
+      setCurrentOperator("")
+  
+    }
+   
+    
+    
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="container">
+          <Calculator equals={equals} currentOperator={currentOperator} allClear={allClear} currentDisplay={currentDisplay} prevDisplay={prevDisplay} displayNumberHandler={displayNumberHandler} handleOperator={handleOperator}/> 
+      </div>
+    
+    
+    </>
   );
 }
 

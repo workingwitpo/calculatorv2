@@ -1,13 +1,64 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calculator-container {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 700px;
+  max-width: 500px;
+  max-height: 700px;
+  border: 1px solid blue;
+}
+
+
+/* display section */
+.calculator-container .display {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: white;
+  padding: 20px;
+  height: 20%;
+  background-color: black;
+  max-width: 100%;
+}
+
+.display .currentOperand {
+  margin-top: 15px;
+  font-size: 2.5em;
+  max-width: 100%;
+  overflow: auto;  
+}
+
+.display .prevOperand {
+  margin-bottom: 20px;
+  font-size: 1em;
+} 
+
+
+
+/* button section */
+.calculator-container .buttons-group {
+  display: grid;
+  height: 80%;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.spantwo {
+  grid-column: span 2;
+}
+
+.buttons-group button {
+  font-size: 2em;
+  font-weight: bold;
 }
